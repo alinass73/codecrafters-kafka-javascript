@@ -4,8 +4,8 @@ import net from "net";
 console.log("Logs from your program will appear here!");
 
 // Uncomment this block to pass the first stage
-// const server = net.createServer((connection) => {
-//   // Handle connection
-// });
+const server = net.createServer((connection) => {
+  // Handle connection
+});
 //
-// server.listen(9092, "127.0.0.1");
+server.listen(9092, "127.0.0.1");
