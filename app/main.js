@@ -5,7 +5,14 @@ console.log("Logs from your program will appear here!");
 
 // Uncomment this block to pass the first stage
 const server = net.createServer((connection) => {
-  connection.write("\0\0\0\x08\0\0\0\x07");
+  connection.on("data", (data) => {
+        const correlationId = data.readInt32BE(8);
+
+        const responseData = Buffer.from("Simple response");
+        const response = createFullResponse(correlationId, responseData);
+
+        connection.write(response);
+    });
 });
 //
 server.listen(9092, "127.0.0.1");
